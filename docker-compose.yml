@@ -1,0 +1,59 @@
+lb:
+  image: jwilder/nginx-proxy
+  ports:
+    - "80:80"
+    - "443:443"
+  volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
+    - "~/certs:/etc/nginx/certs"
+
+mongo:
+  image: mongo
+
+ctf:
+  build: CTF
+  links:
+    - mongo
+  environment:
+    VIRTUAL_HOST: yehd-ctf.meiji-ncc.tech
+    CERT_NAME: shared
+    START_DATE: 2015/12/20 12:00:00 +09:00
+    END_DATE: 2015/12/20 17:00:00 +09:00
+  volumes:
+    - "~/YEHD-2015-CTF:/app/questions"
+
+procon:
+  build: Procon
+  links:
+    - mongo
+  environment:
+    VIRTUAL_HOST: yehd-procon.meiji-ncc.tech
+    CERT_NAME: shared
+    START_DATE: 2015/12/20 12:00:00 +09:00
+    END_DATE: 2015/12/20 17:00:00 +09:00
+  volumes:
+    - "~/YEHD-2015-Procon:/app/questions"
+
+score:
+  build: Score
+  environment:
+    VIRTUAL_HOST: yehd-score.meiji-ncc.tech
+    CERT_NAME: shared
+
+judge:
+  build: ProconBridge
+  links:
+    - mongo
+  environment:
+    QDIR: "/home/ubuntu/YEHD-2015-Procon"
+    TMP: "/tmp"
+  volumes:
+    - "/var/run/docker.sock:/var/run/docker.sock:z"
+    - "/tmp:/tmp"
+# score:
+#   build: score
+#   links:
+#     - mongo
+#   environment:
+#     VIRTUAL_HOST: yehd-score.meiji-ncc.tech
+#     VIRTUAL_PORT: 8000

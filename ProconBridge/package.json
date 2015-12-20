@@ -1,0 +1,22 @@
+{
+  "name": "data",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "co": "^4.6.0",
+    "dockerode": "^2.2.7",
+    "mongoose": "4.3.2",
+    "tmp": "^0.0.28",
+    "pify": "^2.3.0",
+    "js-sha3": "^0.5.1",
+    "stream-buffers": "^3.0.0"
+  }
+}
