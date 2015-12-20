@@ -1,0 +1,7 @@
+[submodule "CTF"]
+  path = CTF
+  url = "https://github.com/3846masa/YEHD-2015-CTFServer.git"
+[submodule "Procon"]
+  path = Procon
+  url = "https://github.com/3846masa/YEHD-2015-ProconServer.git"
+
