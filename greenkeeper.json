@@ -1,0 +1,11 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "ProconBridge/package.json",
+        "ProconExec/package.json",
+        "Score/package.json"
+      ]
+    }
+  }
+}
